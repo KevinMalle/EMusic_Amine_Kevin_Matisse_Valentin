@@ -1,0 +1,78 @@
+
+# Accueil
+
+index:
+    path: /index
+    controller: App\Controller\IndexController::index
+
+
+# Instrument
+
+listerClasseInstrument:
+    path: /index/listerClasseInstrument
+    controller: App\Controller\InstrumentController::listerClasseInstrument
+
+listerTypeInstrument:
+    path: /index/listerTypeInstrument/{id}
+    controller: App\Controller\InstrumentController::listerTypeInstrument
+
+listerInstrument:
+    path: /index/listerInstrument/{id}
+    controller: App\Controller\InstrumentController::listerInstrument
+
+listerAllInstrument:
+    path: /index/listerAllInstrument
+    controller: App\Controller\InstrumentController::listerAllInstrument
+
+consulterInstrument:
+    path: /index/consulterInstrument/{id}
+    controller: App\Controller\InstrumentController::consulterInstrument
+
+ajouterInstrument:
+    path: /index/ajouterInstrument
+    controller: App\Controller\InstrumentController::ajouterInstrument
+
+modifierInstrument:
+    path: /index/modifierInstrument/{id}
+    controller: App\Controller\InstrumentController::modifierInstrument
+
+listerLesInterventionsInstrument:
+    path: /intervention/listerLesInterventionsInstrument/{idInstrument}
+    controller: App\Controller\InstrumentController::listerLesInterventionsInstrument
+
+
+
+# Elève
+
+listerEleve:
+     path: /index/listerEleve
+     controller: App\Controller\EleveController::listerEleve
+
+# Prêt
+
+listerPret:
+    path: /index/listerPret
+    controller: App\Controller\PretController::listerPret
+
+ajouterPret:
+    path: /index/ajouterPret
+    controller: App\Controller\PretController::ajouterPret
+
+consulterPret:
+    path: /index/consulterPret/{idPret}
+    controller: App\Controller\PretController::consulterPret
+
+
+
+
+  
+
+# Connexion
+
+login:
+    path: /index/app_login
+    controller: App\Controller\SecurityController::login
+
+logout:
+    path: /index/logout
+    controller: App\Controller\SecurityController::logout
