@@ -28,42 +28,17 @@ consulterInstrument:
     path: /index/consulterInstrument/{id}
     controller: App\Controller\InstrumentController::consulterInstrument
 
-ajouterInstrument:
-    path: /index/ajouterInstrument
-    controller: App\Controller\InstrumentController::ajouterInstrument
-
-modifierInstrument:
-    path: /index/modifierInstrument/{id}
-    controller: App\Controller\InstrumentController::modifierInstrument
-
 listerLesInterventionsInstrument:
     path: /intervention/listerLesInterventionsInstrument/{idInstrument}
     controller: App\Controller\InstrumentController::listerLesInterventionsInstrument
 
 
 
-# Elève
+# Eleve    
 
 listerEleve:
      path: /index/listerEleve
      controller: App\Controller\EleveController::listerEleve
-
-# Prêt
-
-listerPret:
-    path: /index/listerPret
-    controller: App\Controller\PretController::listerPret
-
-ajouterPret:
-    path: /index/ajouterPret
-    controller: App\Controller\PretController::ajouterPret
-
-consulterPret:
-    path: /index/consulterPret/{idPret}
-    controller: App\Controller\PretController::consulterPret
-
-
-
 
   
 
@@ -76,3 +51,20 @@ login:
 logout:
     path: /index/logout
     controller: App\Controller\SecurityController::logout
+
+# Prêt
+
+listerPret:
+    path: /index/listerPret
+    controller: App\Controller\PretController::listerPret
+
+ajouterPret:
+    path: /index/ajouterPret
+    controller: App\Controller\PretController::ajouterPret
+
+ConsulterPret:
+    path: /pret/consulterPret/{idPret}
+    controller: App\Controller\PretController::consulterPret
+
+
+

@@ -28,12 +28,6 @@ class Pret
      * @ORM\Column(type="date")
      */
     private $dateFin;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Eleve::class, mappedBy="pret")
-     */
-    private $eleves;
-
     /**
      * @ORM\ManyToOne(targetEntity=Instrument::class, inversedBy="prets")
      */
@@ -44,9 +38,13 @@ class Pret
      */
     private $interPret;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Eleve::class, inversedBy="prets")
+     */
+    private $eleve;
+
     public function __construct()
     {
-        $this->eleves = new ArrayCollection();
         $this->interPret = new ArrayCollection();
     }
 
@@ -78,37 +76,6 @@ class Pret
 
         return $this;
     }
-
-    /**
-     * @return Collection|Eleve[]
-     */
-    public function getEleves(): Collection
-    {
-        return $this->eleves;
-    }
-
-    public function addElefe(Eleve $elefe): self
-    {
-        if (!$this->eleves->contains($elefe)) {
-            $this->eleves[] = $elefe;
-            $elefe->setPret($this);
-        }
-
-        return $this;
-    }
-
-    public function removeElefe(Eleve $elefe): self
-    {
-        if ($this->eleves->removeElement($elefe)) {
-            // set the owning side to null (unless already changed)
-            if ($elefe->getPret() === $this) {
-                $elefe->setPret(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getInstrument(): ?Instrument
     {
         return $this->instrument;
@@ -147,6 +114,18 @@ class Pret
                 $interPret->setPret(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEleve(): ?Eleve
+    {
+        return $this->eleve;
+    }
+
+    public function setEleve(?Eleve $eleve): self
+    {
+        $this->eleve = $eleve;
 
         return $this;
     }

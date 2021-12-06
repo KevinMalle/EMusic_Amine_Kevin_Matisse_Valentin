@@ -58,20 +58,20 @@ class Eleve
      * @ORM\OneToMany(targetEntity=Inscription::class, mappedBy="eleve")
      */
     private $inscription;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Pret::class, inversedBy="eleves")
-     */
-    private $pret;
-
     /**
      * @ORM\ManyToOne(targetEntity=Responsable::class, inversedBy="eleves")
      */
     private $responsable;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Pret::class, mappedBy="eleve")
+     */
+    private $prets;
+
     public function __construct()
     {
         $this->inscription = new ArrayCollection();
+        $this->prets = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -192,19 +192,6 @@ class Eleve
 
         return $this;
     }
-
-    public function getPret(): ?Pret
-    {
-        return $this->pret;
-    }
-
-    public function setPret(?Pret $pret): self
-    {
-        $this->pret = $pret;
-
-        return $this;
-    }
-
     public function getResponsable(): ?Responsable
     {
         return $this->responsable;
@@ -213,6 +200,36 @@ class Eleve
     public function setResponsable(?Responsable $responsable): self
     {
         $this->responsable = $responsable;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Pret[]
+     */
+    public function getPrets(): Collection
+    {
+        return $this->prets;
+    }
+
+    public function addPret(Pret $pret): self
+    {
+        if (!$this->prets->contains($pret)) {
+            $this->prets[] = $pret;
+            $pret->setEleve($this);
+        }
+
+        return $this;
+    }
+
+    public function removePret(Pret $pret): self
+    {
+        if ($this->prets->removeElement($pret)) {
+            // set the owning side to null (unless already changed)
+            if ($pret->getEleve() === $this) {
+                $pret->setEleve(null);
+            }
+        }
 
         return $this;
     }
