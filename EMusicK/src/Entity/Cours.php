@@ -6,6 +6,7 @@ use App\Repository\CoursRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CoursRepository::class)
@@ -21,21 +22,27 @@ class Cours
 
     /**
      * @ORM\Column(type="string", length=255)
+     * 
+     * @Assert\Length(min = 2, minMessage = "Le nom du Cours doit comporter au moins 2 caractères")
+     * @Assert\Length(max = 50, maxMessage = "Le nom du Cours doit comporter au plus 50 caractères")
      */
     private $libelle;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotNull
      */
     private $ageMini;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotNull
      */
     private $ageMaxi;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotNull
      */
     private $nbPlaceMaxi;
 

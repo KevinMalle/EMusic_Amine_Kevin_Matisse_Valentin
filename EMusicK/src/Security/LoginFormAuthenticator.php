@@ -2,6 +2,7 @@
 namespace App\Security;
 
 use App\Entity\User;
+use App\Controller\IndexController;
 
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,15 +15,21 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\CustomCredentials;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Authenticator\Passport\PassportInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials;
 
 class LoginFormAuthenticator extends AbstractAuthenticator
 {
 
     private UserRepository $userRepository;
+    private RouterInterface $router;
+    
 
-    public function __construct(UserRepository $userRepository)
+    public function __construct(UserRepository $userRepository, RouterInterface $router)
     {
         $this->userRepository = $userRepository;
+        $this->router = $router;
     }
 
     public function supports(Request $request): ?bool
@@ -30,16 +37,19 @@ class LoginFormAuthenticator extends AbstractAuthenticator
         return ($request->getPathInfo() === '/login' && $request->isMethod('POST'));
     }
 
-
-
     public function authenticate(Request $request): PassportInterface
     {
         $email = $request->request->get('email');
         $password = $request->request->get('password');
+        $username = $request->request->get('username');
+
         return new Passport(
+
             new UserBadge($email, function($userIdentifier) {
+
                 // optionally pass a callback to load the User manually
                 $user = $this->userRepository->findOneBy(['email' => $userIdentifier]);
+                
 
                 if (!$user) {
                     throw new UserNotFoundException();
@@ -47,18 +57,14 @@ class LoginFormAuthenticator extends AbstractAuthenticator
 
                 return $user;
             }),
-
-            new CustomCredentials(function($credentials, User $user) {
-                return $credentials === 'mpRomagne';
-            }, $password)
+            new PasswordCredentials($password)
         );
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
-        return null;
         return new RedirectResponse(
-            $this->router->generate('app_homepage')
+            $this->router->generate('index')
         );
     }
 
@@ -67,6 +73,16 @@ class LoginFormAuthenticator extends AbstractAuthenticator
     {
         dd('failure');
     }
+
+
+/*
+$request->getSession()->set(Security::AUTHENTICATION_ERROR, $exception);
+        return new RedirectResponse(
+            $this->router->generate('app_login')
+        );*/
+
+
+
 //    public function start(Request $request, AuthenticationException $authException = null): Response
 //    {
 //        /*

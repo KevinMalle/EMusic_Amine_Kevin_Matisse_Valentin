@@ -6,6 +6,7 @@ use App\Repository\ProfesseurRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ProfesseurRepository::class)
@@ -21,16 +22,23 @@ class Professeur
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min = 2, minMessage = "Le nom du Professeur doit comporter au moins 2 caractères")
+     * @Assert\Length(max = 50, maxMessage = "Le nom du Professeur doit comporter au plus 50 caractères")
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min = 2, minMessage = "Le prenom du Professeur doit comporter au moins 2 caractères")
+     * @Assert\Length(max = 50, maxMessage = "Le prenom du Professeur doit comporter au plus 50 caractères")
      */
     private $prenom;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Email(
+     *     message = "L'Adresse Mail '{{ value }}' n'est pas une adresse valide."
+     * )
      */
     private $email;
 

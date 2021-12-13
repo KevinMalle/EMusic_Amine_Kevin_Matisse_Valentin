@@ -49,6 +49,11 @@ class Intervention
      */
     private $professionnel;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Instrument::class, inversedBy="interventions")
+     */
+    private $instrument;
+
     public function __construct()
     {
         $this->instruments = new ArrayCollection();
@@ -164,6 +169,18 @@ class Intervention
     public function setProfessionnel(?Professionnel $professionnel): self
     {
         $this->professionnel = $professionnel;
+
+        return $this;
+    }
+
+    public function getInstrument(): ?Instrument
+    {
+        return $this->instrument;
+    }
+
+    public function setInstrument(?Instrument $instrument): self
+    {
+        $this->instrument = $instrument;
 
         return $this;
     }

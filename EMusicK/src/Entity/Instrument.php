@@ -22,72 +22,84 @@ class Instrument
 
     /**
      * @ORM\Column(type="string", length=255)
-     * 
-     * @Assert\Length(
-     *      min = 2,
-     *      max = 50,
-     *      minMessage = "L'intitulé doit comporter au moins 2 caractères",
-     *      maxMessage = "Le nom doit comporter au plus 50 caractères"
-     *    )
-     * 
-     * @Assert\NotBlank()
-     * 
+     * @Assert\NotNull
+     * @Assert\Length(min = 2, minMessage = "Le nom de l'Instrument doit comporter au moins 2 caractères")
+     * @Assert\Length(max = 50, maxMessage = "Le nom de l'Instrument doit comporter au plus 50 caractères")
+     *
      * 
      */
     private $intitule;
 
     /**
      * @ORM\Column(type="integer")
-     * 
-     * 
-     * 
+     * @Assert\NotNull
+     * @Assert\PositiveOrZero
      */
     private $prixAchat;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * 
+     * @Assert\Length(min = 2, minMessage = "Le marque de l'Instrument doit comporter au moins 2 caractères")
+     * @Assert\Length(max = 50, maxMessage = "Le marque de l'Instrument doit comporter au plus 50 caractères")
+     * @Assert\NotNull
      */
     private $marque;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * 
+     * @Assert\Length(min = 2, minMessage = "Le couleur de l'Instrument doit comporter au moins 2 caractères")
+     * @Assert\Length(max = 50, maxMessage = "Le couleur de l'Instrument doit comporter au plus 50 caractères")
+     * @Assert\NotNull
      */
     private $couleurDominante;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * 
+     * @Assert\Length(min = 2, minMessage = "Le numéro de série de l'Instrument doit comporter au moins 2 caractères")
+     * @Assert\Length(max = 50, maxMessage = "Le numéro de série de l'Instrument doit comporter au plus 50 caractères")
+     * 
+     * @Assert\NotNull
      */
     private $NumeroSerie;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotNull
      */
     private $utilisation;
 
     /**
      * @ORM\ManyToOne(targetEntity=TypeInstrument::class, inversedBy="instrument")
+     * @Assert\NotNull
      */
     private $typeInstrument;
 
     /**
      * @ORM\OneToMany(targetEntity=Pret::class, mappedBy="instrument")
+     * @Assert\NotNull
      */
     private $prets;
 
     /**
      * @ORM\OneToMany(targetEntity=Accessoire::class, mappedBy="instrument")
+     * 
      */
     private $accessoire;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Intervention::class, inversedBy="instruments")
+     * @ORM\OneToMany(targetEntity=Intervention::class, mappedBy="instrument")
+     * @Assert\NotNull
      */
-    private $intervention;
+    private $interventions;
 
     public function __construct()
     {
         $this->prets = new ArrayCollection();
         $this->accessoire = new ArrayCollection();
+        $this->interventions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -239,15 +251,34 @@ class Instrument
         return $this;
     }
 
-    public function getIntervention(): ?Intervention
+    /**
+     * @return Collection|Intervention[]
+     */
+    public function getInterventions(): Collection
     {
-        return $this->intervention;
+        return $this->interventions;
     }
 
-    public function setIntervention(?Intervention $intervention): self
+    public function addIntervention(Intervention $intervention): self
     {
-        $this->intervention = $intervention;
+        if (!$this->interventions->contains($intervention)) {
+            $this->interventions[] = $intervention;
+            $intervention->setInstrument($this);
+        }
 
         return $this;
     }
+
+    public function removeIntervention(Intervention $intervention): self
+    {
+        if ($this->interventions->removeElement($intervention)) {
+            // set the owning side to null (unless already changed)
+            if ($intervention->getInstrument() === $this) {
+                $intervention->setInstrument(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

@@ -27,45 +27,46 @@
         <!-- Masthead-->
         <header class="masthead">
             <div class="container">
-                <div class="masthead-heading">Liste des prêts </div>
+                <div class="masthead-heading">Liste des Prêts </div>
             </div>
         </header>
 
-        
-
-		<center>
-		<br>
-		<br>
-		<br>
-		<table class="table-pret">
-			<tr>
-			<td>ID</td>
-			<td>DATE DE DEBUT</td>
-            <td>DATE DE FIN</td>
-			<td>INSTRUMENT</td>
-			<td>TYPE DE L'INSTRUMENT</td>
-			</tr>
-			{% for p in Pret  %}
-		<tr>
-			<td>{{ p.id }}</a></td>
-			<td>{{p.dateDebut|date("d/m/Y")}}</td>
-            <td>{{p.dateFin|date("d/m/Y")}}</td>
-			<td>{{p.instrument.intitule}}</td>
-			<td>{{p.instrument.typeInstrument.libelle}}</td>
-		</tr>
-		{% else %}
-		<tr>
-			<td>Aucun pret trouvé.</td>
-		</tr>
-		{% endfor %}
-        </table>
-        <button data-bs-dismiss="modal" type="button">
-                    <a href="{{ path('ajouterPret')}}">
-                        Ajout d'un Prêt
-                    </a>
-        </button>
-
-
+        <section>
+        <div class="tbl-header">
+            <table cellpadding="0" cellspacing="0" border="0">
+                <thead>
+                    <tr>
+                        <th>Date de Début</th>
+                        <th>Date de Fin</th>
+                        <th>Instrument</th>
+                        <th>Type d'Instrument</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="tbl-content">
+            <table cellpadding="0" cellspacing="0" border="0">
+                <tbody>
+                {% for p in Pret %}
+                    <tr>
+			            <td>{{p.dateDebut|date("d/m/Y")}}</td>
+                        <td>{{p.dateFin|date("d/m/Y")}}</td>
+			            <td>{{p.instrument.intitule}}</td>
+			            <td>{{p.instrument.typeInstrument.libelle}}</td>
+                    </tr>
+                {% else %}
+		            <tr>
+		                <td>Aucun pret trouvé.</td>
+		            </tr>
+	            {% endfor %}
+                </tbody>
+            </table>
+            <br>
+            <center>
+        </div>
+        <br>
+        <a class="btn btn-add btn-l" href="{{ path('ajouterPret')}}">Ajouter un Prêt</a>
+    </section>
 
 
 
@@ -73,7 +74,7 @@
         <footer class="footer py-4">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-4 text-lg-start">Copyright &copy; 2021 Kamikav, All right reserved.</div>
+                    <div class="col-lg-4 text-lg-start">Copyright &copy; 2021 Kamikav (Amine El Hankouri, Kevin Malle, Valentin Lainé, Matisse Chaillou), All right reserved.</div>
                     <div class="col-lg-4 my-3 my-lg-0">
                         <a class="btn btn-dark btn-social mx-2" href="https://github.com/KevinMalle/EMusic_Amine_Kevin_Matisse_Valentin" target="_blank"><i class="fab fa-github"></i></a>
                     </div>

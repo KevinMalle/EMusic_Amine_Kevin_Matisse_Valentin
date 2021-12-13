@@ -1,7 +1,0 @@
-index:
-    path: /index
-    controller: App\Controller\IndexController::index
-
-listerInstrument:
-    path: /index/ListeInstrument
-    controller: App\Controller\InstrumentController::listerInstrument

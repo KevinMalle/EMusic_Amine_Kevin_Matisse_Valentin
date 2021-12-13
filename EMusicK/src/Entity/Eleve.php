@@ -6,6 +6,7 @@ use App\Repository\EleveRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=EleveRepository::class)
@@ -21,31 +22,45 @@ class Eleve
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotNull
+     * @Assert\Length(min = 2, minMessage = "Le nom de l'Elève doit comporter au moins 2 caractères")
+     * @Assert\Length(max = 50, maxMessage = "Le nom de l'Elève doit comporter au plus 50 caractères")
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min = 2, minMessage = "Le prenom de l'Elève doit comporter au moins 2 caractères")
+     * @Assert\Length(max = 50, maxMessage = "Le prenom de l'Elève doit comporter au plus 50 caractères")
      */
     private $prenom;
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\NotNull
      */
     private $dateNaiss;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * 
+     * @Assert\Length(min = 2, minMessage = "La rue doit comporter au moins 2 caractères")
+     * @Assert\Length(max = 50, maxMessage = "La rue doit comporter au plus 50 caractères")
+     * 
      */
     private $rue;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * 
+     * @Assert\Length(max = 100, maxMessage = "La ville doit comporter au plus 100 caractères")
+     * 
      */
     private $ville;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotNull
      */
     private $codePostal;
 

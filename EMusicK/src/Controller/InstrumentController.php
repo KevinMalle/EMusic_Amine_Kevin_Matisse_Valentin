@@ -21,8 +21,8 @@ class InstrumentController extends AbstractController
         // initialise une variable qui sera exploitée dans la vue
 
         $repository = $this->getDoctrine()->getRepository(ClasseInstrument::class);
-		$ClassesInstrument = $repository->findAll();
-		return $this->render('Instrument/listerClasse.html.twig', ['pClassesInstrument' => $ClassesInstrument,]);
+        $ClassesInstrument = $repository->findAll();
+        return $this->render('Instrument/listerClasse.html.twig', ['pClassesInstrument' => $ClassesInstrument,]);
     }
 
     public function listerTypeInstrument($id)
@@ -30,10 +30,10 @@ class InstrumentController extends AbstractController
         // initialise une variable qui sera exploitée dans la vue
 
         $typeInstrument = $this->getDoctrine()
-        ->getRepository(TypeInstrument::class)
-        ->findByClasseInstrument($id);
+            ->getRepository(TypeInstrument::class)
+            ->findByClasseInstrument($id);
 
-		return $this->render('Instrument/listerType.html.twig', ['pTypeInstrument' => $typeInstrument,]);
+        return $this->render('Instrument/listerType.html.twig', ['pTypeInstrument' => $typeInstrument,]);
     }
 
 
@@ -43,19 +43,19 @@ class InstrumentController extends AbstractController
         // initialise une variable qui sera exploitée dans la vue
 
         $instrument = $this->getDoctrine()
-        ->getRepository(Instrument::class)
-        ->findByTypeInstrument($id);
+            ->getRepository(Instrument::class)
+            ->findByTypeInstrument($id);
 
-		return $this->render('Instrument/listerInstrument.html.twig', ['pInstrument' => $instrument,]);
+        return $this->render('Instrument/listerInstrument.html.twig', ['pInstrument' => $instrument,]);
     }
 
     public function ajouterInstrument(Request $request)
     {
         $instrument = new Instrument();
-	    $formInstru = $this->createForm(InstrumentType::class, $instrument);
-	    $formInstru->handleRequest($request);
+        $formInstru = $this->createForm(InstrumentType::class, $instrument);
+        $formInstru->handleRequest($request);
 
- 	    if ($formInstru->isSubmitted() && $formInstru->isValid()) {
+        if ($formInstru->isSubmitted() && $formInstru->isValid()) {
 
             $instrument = $formInstru->getData();
 
@@ -63,70 +63,89 @@ class InstrumentController extends AbstractController
             $entityManager->persist($instrument);
             $entityManager->flush();
 
-	    return $this->render('Instrument/consulterInstrument.html.twig', ['consInstru' => $instrument,]);
-	    }
-	    else
-        {
+            return $this->render('Instrument/consulterInstrument.html.twig', ['consInstru' => $instrument,]);
+        } else {
             return $this->render('Instrument/ajouterInstrument.html.twig', array('formInstru' => $formInstru->createView(),));
-	    }
+        }
     }
 
-    public function modifierInstrument($id, Request $request){
- 
+    public function modifierInstrument($id, Request $request)
+    {
+
         //récupération de l'étudiant dont l'id est passé en paramètre
         $instrument = $this->getDoctrine()
-        ->getRepository(Instrument::class)
-        ->find($id);
-     
-        if (!$instrument)
-        {
-            throw $this->createNotFoundException('Aucun Instrument trouvé avec le numéro '.$id);
-        }
-        else
-            {
-                $formInstru = $this->createForm(InstrumentModifierType::class, $instrument);
-                $formInstru->handleRequest($request);
-     
-                if ($formInstru->isSubmitted() && $formInstru->isValid()) {
-     
-                     $instrument = $formInstru->getData();
-                     $entityManager = $this->getDoctrine()->getManager();
-                     $entityManager->persist($instrument);
-                     $entityManager->flush();
-                     return $this->render('Instrument/consulterInstrument.html.twig', ['consInstru' => $instrument,]);
-               }
-               else{
-                    return $this->render('Instrument/ajouterInstrument.html.twig', array('formInstru' => $formInstru->createView(),));
-               }
+            ->getRepository(Instrument::class)
+            ->find($id);
+
+        if (!$instrument) {
+            throw $this->createNotFoundException('Aucun Instrument trouvé avec le numéro ' . $id);
+        } else {
+            $formInstru = $this->createForm(InstrumentModifierType::class, $instrument);
+            $formInstru->handleRequest($request);
+
+            if ($formInstru->isSubmitted() && $formInstru->isValid()) {
+
+                $instrument = $formInstru->getData();
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($instrument);
+                $entityManager->flush();
+                return $this->render('Instrument/consulterInstrument.html.twig', ['consInstru' => $instrument,]);
+            } else {
+                return $this->render('Instrument/ajouterInstrument.html.twig', array('formInstru' => $formInstru->createView(),));
             }
-     }
+        }
+    }
+
+    public function supprimerInstrument($id)
+    {
+
+        $instrument = $this->getDoctrine()
+            -> getRepository(Instrument::class)
+            -> find($id);
+            if (!$instrument)
+            {
+                throw $this->createNotFoundException('Aucun Instrument trouvé avec le numéro '.$id);
+            }
+            else
+            {
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->remove($instrument);
+                $entityManager->flush();
+            }
+        
+        return $this->redirectToRoute('index');
+    }
+
+
 
     public function listerAllInstrument(): Response
     {
         // initialise une variable qui sera exploitée dans la vue
 
         $repository = $this->getDoctrine()->getRepository(Instrument::class);
-		$allInstrument = $repository->findAll();
-		return $this->render('Instrument/listerAllInstrument.html.twig', ['pAllInstrument' => $allInstrument,]);
+        $allInstrument = $repository->findAll();
+        return $this->render('Instrument/listerAllInstrument.html.twig', ['pAllInstrument' => $allInstrument,]);
     }
 
-    public function consulterInstrument($id){
-		
-		$consInstru = $this->getDoctrine()
-        ->getRepository(Instrument::class)
-        ->find($id);
+    public function consulterInstrument($id)
+    {
 
-		if (!$consInstru) {
-			throw $this->createNotFoundException(
-            'Aucun instrument trouvé avec le numéro '.$id
-			);
-		}
+        $consInstru = $this->getDoctrine()
+            ->getRepository(Instrument::class)
+            ->find($id);
+
+        if (!$consInstru) {
+            throw $this->createNotFoundException(
+                'Aucun instrument trouvé avec le numéro ' . $id
+            );
+        }
 
 
-		return $this->render('Instrument/consulterInstrument.html.twig', [
-            'consInstru' => $consInstru,]);
-	}
-    
+        return $this->render('Instrument/consulterInstrument.html.twig', [
+            'consInstru' => $consInstru,
+        ]);
+    }
+
     public function listerLesInterventionsInstrument($idInstrument){
 		
 		$instrument = $this->getDoctrine()
@@ -140,9 +159,6 @@ class InstrumentController extends AbstractController
 		}
 
 		return $this->render('Intervention/listerLesInterventionsInstrument.html.twig', [
-            'Instrument' => $instrument,]);
+            'instrument' => $instrument,]);
 	}
-    
-    
 }
-

@@ -6,6 +6,7 @@ use App\Repository\PretRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=PretRepository::class)
@@ -21,11 +22,13 @@ class Pret
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\NotNull
      */
     private $dateDebut;
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\NotNull
      */
     private $dateFin;
     /**

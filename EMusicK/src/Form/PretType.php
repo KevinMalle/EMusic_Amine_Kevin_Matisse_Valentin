@@ -30,6 +30,8 @@ class PretType extends AbstractType
                                                         'placeholder' => 'jj/mm/aaaa'))
             ->add('instrument',EntityType::class, array('class' => 'App\Entity\Instrument','choice_label' => 'intitule '))
             
+            ->add('eleve',EntityType::class, array('class' => 'App\Entity\Eleve','choice_label' => 'nom '))
+            
             ->add('Emprunter', SubmitType::class, array('label' => 'Nouvel emprunt'))
             ;
     }

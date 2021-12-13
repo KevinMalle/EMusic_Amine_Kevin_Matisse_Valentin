@@ -27,17 +27,21 @@
         <header class="masthead">
             <form method="post">
             <div class="container">
-                <div class="masthead-heading text-uppercase">Bienvenue chez E-MUSIC</div>
+                <div class="masthead-heading">Bienvenue chez E-MUSIC</div>
 
-                <div class="masthead-heading">Indiquez ici votre identifiant pour vous connecter.</div>
+                <div class="masthead-subheading">Indiquez ici votre identifiant pour vous connecter.</div>
 
-                <label for="inputEmail">Adresse E-Mail</label>
-                <input type="email" name="email" id="inputEmail" class="form-control" required autofocus>
+                <label for="inputEmail"><u>Adresse E-Mail<u></label>
+                <br>
+                <br>
+                <input type="email" name="email" placeholder="example@gmail.com" id="inputEmail" class="form-control" required autofocus>
 
                 <br>
                 <br>
 
-                <label for="inputPassword" class="">Mot de passe</label>
+                <label for="inputPassword" class=""><u>Mot de passe<u></label>
+                <br>
+                <br>
                 <input type="password" name="password" id="inputPassword" class="form-control" required>
 
                 <br>
@@ -45,10 +49,14 @@
 
 
                 <div>
-                    <button class="btn btn-primary" type="submit">
+                    <button class="btn btn-primary btn-sl" type="submit">
                         Se Connecter
                     </button>
                 </div>
+
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey }}</div>
+                {% endif %}
                 
             </div>
             </form>
@@ -66,11 +74,11 @@
     
 </form> #}
 
-        <!--Footer-->
+        <!-- Footer-->
         <footer class="footer py-4">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-4 text-lg-start">Copyright &copy; 2021 Kamikav, All right reserved.</div>
+                    <div class="col-lg-4 text-lg-start">Copyright &copy; 2021 Kamikav (Amine El Hankouri, Kevin Malle, Valentin Lainé, Matisse Chaillou), All right reserved.</div>
                     <div class="col-lg-4 my-3 my-lg-0">
                         <a class="btn btn-dark btn-social mx-2" href="https://github.com/KevinMalle/EMusic_Amine_Kevin_Matisse_Valentin" target="_blank"><i class="fab fa-github"></i></a>
                     </div>

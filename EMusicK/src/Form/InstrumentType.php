@@ -9,6 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class InstrumentType extends AbstractType
 {
@@ -20,7 +21,8 @@ class InstrumentType extends AbstractType
             ->add('marque', TextType::class)
             ->add('couleurDominante', TextType::class)
             ->add('NumeroSerie', TextType::class)
-            ->add('utilisation', TextType::class)
+            ->add('utilisation', ChoiceType::class, [ 'choices'  => [ '' => '','Prêt' => 'Prêt', 'Cours' => 'Cours' , 'Concert' => 'Concert']])
+
             ->add('typeInstrument',EntityType::class, array('class' => 'App\Entity\TypeInstrument','choice_label' => 'libelle'))
 	        ->add('enregistrer', SubmitType::class, array('label' => 'Nouvel Instrument'))
         ;

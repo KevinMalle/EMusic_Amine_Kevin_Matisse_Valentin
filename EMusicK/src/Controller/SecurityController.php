@@ -14,7 +14,10 @@ class SecurityController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        return $this->render('Security/login.html.twig');
+        return $this->render('Security/login.html.twig', [
+            'error' => $authenticationUtils->getLastAuthenticationError(),
+        ]);
+        var_dump($authenticationUtils);
     }
 
     /**
@@ -22,6 +25,6 @@ class SecurityController extends AbstractController
      */
     public function logout(): void
     {
-        throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+        throw new \LogicException('logout () should never be reached');
     }
 }

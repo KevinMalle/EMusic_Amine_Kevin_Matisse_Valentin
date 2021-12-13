@@ -28,17 +28,109 @@ consulterInstrument:
     path: /index/consulterInstrument/{id}
     controller: App\Controller\InstrumentController::consulterInstrument
 
+ajouterInstrument:
+    path: /index/ajouterInstrument
+    controller: App\Controller\InstrumentController::ajouterInstrument
+
+modifierInstrument:
+    path: /index/modifierInstrument/{id}
+    controller: App\Controller\InstrumentController::modifierInstrument
+
+supprimerInstrument:
+    path: /index/supprimerInstrument/{id}
+    controller: App\Controller\InstrumentController::supprimerInstrument
+
 listerLesInterventionsInstrument:
     path: /intervention/listerLesInterventionsInstrument/{idInstrument}
     controller: App\Controller\InstrumentController::listerLesInterventionsInstrument
 
 
 
-# Eleve    
+# Elève
 
 listerEleve:
      path: /index/listerEleve
      controller: App\Controller\EleveController::listerEleve
+
+ajouterEleve:
+     path: /index/ajouterEleve
+     controller: App\Controller\EleveController:ajouterEleve
+
+consulterEleve:
+     path: /index/consulterEleve/{id}
+     controller: App\Controller\EleveController:consulterEleve
+
+supprimerEleve:
+     path: /index/supprimerEleve
+     controller: App\Controller\EleveController:supprimerEleve
+
+modifierEleve:
+     path: /index/modifierEleve/{id}
+     controller: App\Controller\EleveController:modifierEleve
+
+
+# Professeur
+
+listerProfesseur:
+    path: /index/listerProfesseur
+    controller: App\Controller\ProfesseurController::listerProfesseur
+
+ajouterProfesseur:
+    path: /index/ajouterProfesseur
+    controller: App\Controller\ProfesseurController::ajouterProfesseur
+
+consulterProfesseur:
+    path: /index/consulterProfesseur/{idProfesseur}
+    controller: App\Controller\ProfesseurController::consulterProfesseur
+
+modifierProfesseur:
+    path: /index/modifierProfesseur/{idProfesseur}
+    controller: App\Controller\ProfesseurController::modifierProfesseur
+
+deleteProfesseur:
+    path: /index/deleteProfesseur/{idProfesseur}
+    controller: App\Controller\ProfesseurController::supprimerProfesseur
+
+
+# Cours
+
+listerCours:
+    path: /index/listerCours
+    controller: App\Controller\CoursController::listerCours
+
+ajouterCours:
+    path: /index/ajouterCours
+    controller: App\Controller\CoursController::ajouterCours
+
+consulterCours:
+    path: /index/consulterCours/{idCours}
+    controller: App\Controller\CoursController::consulterCours
+
+modifierCours:
+    path: /index/modifierCours/{idCours}
+    controller: App\Controller\CoursController::modifierCours
+
+supprimerCours:
+    path: /index/supprimerCours/{idCours}
+    controller: App\Controller\CoursController::supprimerCours
+
+     
+# Prêt
+
+listerPret:
+    path: /index/listerPret
+    controller: App\Controller\PretController::listerPret
+
+ajouterPret:
+    path: /index/ajouterPret
+    controller: App\Controller\PretController::ajouterPret
+
+consulterPret:
+    path: /index/consulterPret/{idPret}
+    controller: App\Controller\PretController::consulterPret
+
+
+
 
   
 
@@ -51,20 +143,3 @@ login:
 logout:
     path: /index/logout
     controller: App\Controller\SecurityController::logout
-
-# Prêt
-
-listerPret:
-    path: /index/listerPret
-    controller: App\Controller\PretController::listerPret
-
-ajouterPret:
-    path: /index/ajouterPret
-    controller: App\Controller\PretController::ajouterPret
-
-ConsulterPret:
-    path: /pret/consulterPret/{idPret}
-    controller: App\Controller\PretController::consulterPret
-
-
-

@@ -14,18 +14,15 @@
 
                         <li class="nav-item"><a class="nav-link" href="{{ path('listerEleve') }}">Eleve</a></li>
 
-                        <!--<li class="nav-item"><a class="nav-link" href="#services">Services</a></li>-->
-
                         <li class="nav-item"><a class="nav-link" href="{{ path('listerPret') }}">Emprunt</a></li>
 
-                        <!--<li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ path('listerCours') }}">Cours</a></li>
 
-                        <!--<li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
-
-                        <!--<li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>-->
+                        <li class="nav-item"><a class="nav-link" href="{{ path('listerProfesseur') }}">Professeur</a></li>
 
                         {% if app.user %}
                             <li class="nav-item"><a class="nav-link" href="{{ path('app_logout') }}">D&#xE9;connexion</a></li>
+                            <li class="nav-item"><a class="nav-link"> {{ app.user.username }}</a></li>
                         {% else %}
                             <li class="nav-item"><a class="nav-link" href="{{ path('app_login') }}">Connexion</a></li>
                         {% endif %}
