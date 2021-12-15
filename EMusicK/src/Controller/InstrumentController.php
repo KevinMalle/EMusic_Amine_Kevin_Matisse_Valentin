@@ -2,16 +2,16 @@
 
 namespace App\Controller;
 
+use App\Entity\Accessoire;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Form\FormTypeInterface;
 use App\Entity\Instrument;
 use App\Entity\ClasseInstrument;
 use App\Entity\TypeInstrument;
 use App\Form\InstrumentType;
 use App\Form\InstrumentModifierType;
+
 
 class InstrumentController extends AbstractController
 {
@@ -161,4 +161,24 @@ class InstrumentController extends AbstractController
 		return $this->render('Intervention/listerLesInterventionsInstrument.html.twig', [
             'instrument' => $instrument,]);
 	}
+
+    public function listerLesAccessoiresInstrument($idInstrument)
+    {
+
+        $instrument = $this->getDoctrine()
+            ->getRepository(Instrument::class)
+            ->find($idInstrument);
+
+        if (!$instrument) {
+            throw $this->createNotFoundException(
+                'Aucun accessoire trouvé avec le numéro ' . $idInstrument
+            );
+        }
+
+        return $this->render('Accessoire/listerLesAccessoiresInstrument.html.twig', [
+            'instrument' => $instrument,
+        ]);
+    }
+
+
 }

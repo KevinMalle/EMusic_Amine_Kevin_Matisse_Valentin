@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>{% block title %}E-Music{% endblock %}</title>
+        <title>{% block title %}E-Music - Liste des Interventions{% endblock %}</title>
         {% block stylesheets %}
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="{{ asset('assets/Music.ico') }}" />
@@ -27,7 +27,7 @@
         <!-- Masthead-->
         <header class="masthead">
             <div class="container">
-                <div class="masthead-heading text-uppercase">Listes des Interventions</div>
+                <div class="masthead-heading text-uppercase">Liste des Interventions</div>
             </div>
         </header>
     <center> 
@@ -45,7 +45,7 @@
 			</tr>
 			{% for i in instrument.interventions  %}
 		<tr>
-			<td>{{i.libelle}}</a></td>
+			<td>{{i.libelle}}</td>
 			<td>{{i.professionnel.nom}}</td>
             <td>{{i.professionnel.prenom}}</td>
 			<td>{{i.dateDebut|date("d/m/Y")}}</td>

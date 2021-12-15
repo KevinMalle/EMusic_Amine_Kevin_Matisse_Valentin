@@ -22,7 +22,7 @@ class CoursType extends AbstractType
             ->add('jour',EntityType::class, array('class' => 'App\Entity\Jour','choice_label' => 'libelle'))
             ->add('professeur',EntityType::class, array('class' => 'App\Entity\Professeur','choice_label' => 'nom'))
             ->add('typeInstrument',EntityType::class, array('class' => 'App\Entity\TypeInstrument','choice_label' => 'libelle'))
-            ->add('enregistrer', SubmitType::class, array('label' => 'Ajout d\'un cours'))
+            ->add('enregistrer', SubmitType::class, array('label' => 'Ajout d\'un Cours'))
         ;
     }
 

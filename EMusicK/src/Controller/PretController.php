@@ -11,14 +11,17 @@ use App\Entity\Pret;
 
 class PretController extends AbstractController
 {
-
-
-
+	/**
+	 * 
+     * @Route("/login", name="app_login")
+     */
     public function listerPret(){
 		$repository = $this->getDoctrine()->getRepository(Pret::class);
 		$Prets = $repository->findAll();
 		return $this->render('Pret/listerPret.html.twig', [
             'Pret' => $Prets,]);	
+
+		
 			
 	}
 

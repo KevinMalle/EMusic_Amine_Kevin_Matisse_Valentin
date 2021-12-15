@@ -46,12 +46,6 @@ class Professeur
      * @ORM\OneToMany(targetEntity=Cours::class, mappedBy="professeur")
      */
     private $cours;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Compte::class, inversedBy="professeurs")
-     */
-    private $compte;
-
     public function __construct()
     {
         $this->cours = new ArrayCollection();
@@ -124,18 +118,6 @@ class Professeur
                 $cour->setProfesseur(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getCompte(): ?Compte
-    {
-        return $this->compte;
-    }
-
-    public function setCompte(?Compte $compte): self
-    {
-        $this->compte = $compte;
 
         return $this;
     }

@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>{% block title %}EMusicK - Connexion{% endblock %}</title>
+        <title>{% block title %}EMusic - Connexion{% endblock %}</title>
         {% block stylesheets %}
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="{{ asset('assets/Music.ico') }}" />
@@ -31,6 +31,7 @@
 
                 <div class="masthead-subheading">Indiquez ici votre identifiant pour vous connecter.</div>
 
+
                 <label for="inputEmail"><u>Adresse E-Mail<u></label>
                 <br>
                 <br>
@@ -55,7 +56,7 @@
                 </div>
 
                 {% if error %}
-                    <div class="alert alert-danger">{{ error.messageKey }}</div>
+                    <div class="alert alert-danger">{{ error.messageKey |trans(error.messageData, 'security') }}</div>
                 {% endif %}
                 
             </div>

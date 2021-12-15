@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>{% block title %}E-Music{% endblock %}</title>
+        <title>{% block title %}E-Music - Détails Instrument{% endblock %}</title>
         {% block stylesheets %}
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="{{ asset('assets/Music.ico') }}" />
@@ -65,6 +65,7 @@
                                         </li>
                                         <br>
                                         <a class="btn btn-cons btn-m" href="{{ path('listerLesInterventionsInstrument', {'idInstrument': consInstru.id})}}">Intervention</a>
+                                        <a class="btn btn-cons btn-m" href="{{ path('listerLesAccessoiresInstrument', {'idInstrument': consInstru.id})}}">Accessoires</a>
                                         <a class="btn btn-primary btn-m" href="{{ path('modifierInstrument', {'id': consInstru.id} ) }}">Modifier</a>
                                         <button class="btn btn-sup btn-m" data-bs-toggle="modal" data-bs-target="#modal-delete">Supprimer</button>
                                     </ul>

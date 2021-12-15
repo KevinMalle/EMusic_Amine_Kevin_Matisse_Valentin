@@ -8,6 +8,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class IndexController extends AbstractController
 {
+    /**
+     * @Route("/", name="app_home")
+     */
     public function index(): Response
     {
         // initialise une variable qui sera exploitée dans la vue

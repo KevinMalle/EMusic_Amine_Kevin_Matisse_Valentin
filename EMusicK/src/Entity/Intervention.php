@@ -33,12 +33,6 @@ class Intervention
      * @ORM\Column(type="date")
      */
     private $dateFin;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Instrument::class, mappedBy="intervention")
-     */
-    private $instruments;
-
     /**
      * @ORM\OneToMany(targetEntity=InterPret::class, mappedBy="intervention")
      */
@@ -56,7 +50,6 @@ class Intervention
 
     public function __construct()
     {
-        $this->instruments = new ArrayCollection();
         $this->interPret = new ArrayCollection();
     }
 
@@ -100,37 +93,6 @@ class Intervention
 
         return $this;
     }
-
-    /**
-     * @return Collection|Instrument[]
-     */
-    public function getInstruments(): Collection
-    {
-        return $this->instruments;
-    }
-
-    public function addInstrument(Instrument $instrument): self
-    {
-        if (!$this->instruments->contains($instrument)) {
-            $this->instruments[] = $instrument;
-            $instrument->setIntervention($this);
-        }
-
-        return $this;
-    }
-
-    public function removeInstrument(Instrument $instrument): self
-    {
-        if ($this->instruments->removeElement($instrument)) {
-            // set the owning side to null (unless already changed)
-            if ($instrument->getIntervention() === $this) {
-                $instrument->setIntervention(null);
-            }
-        }
-
-        return $this;
-    }
-
     /**
      * @return Collection|InterPret[]
      */

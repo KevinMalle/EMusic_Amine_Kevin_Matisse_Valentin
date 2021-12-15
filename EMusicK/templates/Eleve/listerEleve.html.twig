@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>{% block title %}E-Music{% endblock %}</title>
+        <title>{% block title %}E-Music - Elèves{% endblock %}</title>
         {% block stylesheets %}
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="{{ asset('assets/Music.ico') }}" />
@@ -33,7 +33,7 @@
         
         <section>
         <div class="tbl-header">
-            <table cellpadding="0" cellspacing="0" border="0">
+            <table class="table-striped">
                 <thead>
                     <tr><th>Nom Responsable</th>
                         <th>Prenom Responsable</th>
@@ -51,11 +51,10 @@
         </div>
          <FONT face="arial">
         <div class="tbl-content">
-            <table cellpadding="0" cellspacing="0" border="0">
-                <tbody>
-            
+            <table class="table-striped">
+                <tbody>            
                 {% for el in pEleves %}
-                    <tr> 
+                    <tr :nth-of-type> 
                         <td>{{ el.responsable.nom}}</td>
                         <td>{{ el.responsable.prenom}}</td>
                         <td>{{ el.nom}}</td>

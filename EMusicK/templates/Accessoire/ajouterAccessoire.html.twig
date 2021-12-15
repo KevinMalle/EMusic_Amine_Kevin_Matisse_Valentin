@@ -26,9 +26,9 @@
         <!-- Masthead-->
         <header class="masthead">
             <div class="container">
-            {% if app.request.get('_route') == 'ajouterInstrument' %}
+            {% if app.request.get('_route') == 'ajouterAccessoire' %}
 
-                    <div class="masthead-heading">Ajout d'un Instrument</div>
+                    <div class="masthead-heading">Ajout d'un Accessoire</div>
                     
             {% else %}
 
@@ -39,30 +39,24 @@
         </header>
         <center>
 
-        {# templates/Instrument/ajouterInstrument.html.twig #}
         <br>
         <br>
-        {{ form_start(formInstru) }}
+        {{ form_start(formAccess) }}
 
 			    <div class="container">
-				    <div class="row">   
+				    <div class="row">
 			            <div class="col-lg-4 col-sm-6 mb-4 form-ajout">
-                                {{ form_row(formInstru.intitule,{'attr' : {'class' : 'form-control'}}  ) }} 
-                                {{ form_row(formInstru.marque,{'attr' : {'class' : 'form-control'}}  ) }}
-                                {{ form_row(formInstru.couleurDominante,{'attr' : {'class' : 'form-control'}}  ) }}
-                                {{ form_row(formInstru.NumeroSerie,{'attr' : {'class' : 'form-control'}}  ) }}
-                                {{ form_row(formInstru.prixAchat,{'attr' : {'class' : 'form-control'}}  ) }}
-                                {{ form_row(formInstru.utilisation,{'attr' : {'class' : 'form-control'}}  ) }}
-                                {{ form_row(formInstru.typeInstrument,{'attr' : {'class' : 'form-control'}}  ) }}
+                                {{ form_row(formAccess.libelle,{'attr' : {'class' : 'form-control'}}  ) }}
+                                {{ form_row(formAccess.instrument,{'attr' : {'class' : 'form-control'}}  ) }} 
                                 <br>
-                                {{ form_row(formInstru.enregistrer,{'attr' : {'class' : 'form-control btn-primary'}}  ) }}
+                                {{ form_row(formAccess.enregistrer,{'attr' : {'class' : 'form-control btn-primary'}}  ) }}
                         </div>
                     </div>
                 </div>
             
 
 
-        {{ form_end(formInstru) }}
+        {{ form_end(formAccess) }}
 
         <!--Footer-->
         <footer class="footer py-4">

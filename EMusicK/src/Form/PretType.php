@@ -20,14 +20,14 @@ class PretType extends AbstractType
             ->add('dateDebut', DateType::class, array('input' => 'datetime',
                                                         'widget' => 'single_text', 
                                                         'required' => true,
-                                                        'label' =>'date de début ',
-                                                        'placeholder' => 'jj/mm/aaaa'))
+                                                        'label' =>'Date de Début ',
+                                                        'placeholder' => 'JJ/MM/AAAA'))
                                                 
             ->add('dateFin', DateType::class, array('input' => 'datetime',
                                                         'widget' => 'single_text',  
                                                         'required' => true,
-                                                        'label' =>'date de fin ',
-                                                        'placeholder' => 'jj/mm/aaaa'))
+                                                        'label' =>'Date de Fin ',
+                                                        'placeholder' => 'JJ/MM/AAAA'))
             ->add('instrument',EntityType::class, array('class' => 'App\Entity\Instrument','choice_label' => 'intitule '))
             
             ->add('eleve',EntityType::class, array('class' => 'App\Entity\Eleve','choice_label' => 'nom '))

@@ -40,6 +40,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $username;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Eleve::class, cascade={"persist", "remove"})
+     */
+    private $eleve;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Professeur::class, cascade={"persist", "remove"})
+     */
+    private $professeur;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -132,6 +142,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUsername(?string $username): self
     {
         $this->username = $username;
+
+        return $this;
+    }
+
+    public function getEleve(): ?Eleve
+    {
+        return $this->eleve;
+    }
+
+    public function setEleve(?Eleve $eleve): self
+    {
+        $this->eleve = $eleve;
+
+        return $this;
+    }
+
+    public function getProfesseur(): ?Professeur
+    {
+        return $this->professeur;
+    }
+
+    public function setProfesseur(?Professeur $professeur): self
+    {
+        $this->professeur = $professeur;
 
         return $this;
     }

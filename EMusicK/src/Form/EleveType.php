@@ -23,14 +23,13 @@ class EleveType extends AbstractType
             ->add('dateNaiss', DateType::class, array('input' => 'datetime',
             'widget' => 'single_text', 
             'required' => true,
-            'label' =>'date de début ',
-            'placeholder' => 'jj/mm/aaaa'))
+            'label' =>'Date de Début ',
+            'placeholder' => 'JJ/MM/AAAA'))
             ->add('rue')
             ->add('ville')
             ->add('codePostal')
-            ->add('compte',EntityType::class, array('class' => 'App\Entity\Compte','choice_label' => 'identifiant '))
             ->add('responsable',EntityType::class, array('class' => 'App\Entity\Responsable','choice_label' => 'nom '))
-            ->add('enregistrer', SubmitType::class, array('label' => 'Nouvel eleve'))
+            ->add('enregistrer', SubmitType::class, array('label' => 'Nouvel Elève'))
         ;
     }
 

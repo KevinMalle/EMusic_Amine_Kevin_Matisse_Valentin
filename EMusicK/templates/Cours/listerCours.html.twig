@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>{% block title %}E-Music{% endblock %}</title>
+        <title>{% block title %}E-Music - Liste des Cours{% endblock %}</title>
         {% block stylesheets %}
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="{{ asset('assets/Music.ico') }}" />
@@ -34,51 +34,56 @@
         
 
 		 <section>
-        <div class="tbl-header">
-            <table cellpadding="0" cellspacing="0" border="0">
-                <thead>
+            <div class="tbl-header">
+                <table cellpadding="0" cellspacing="0" border="0">
+                    <thead>
          
-			<th>Libelle </th>
-            <th>Age minimum</th>
-			<th>Age maximum</th>
-            <th>Nombres de places maxi</th>
-            <th>Jour</th>
-            <th>Instrument du Cours</tthd>
-            <th>Modification</th>
-            <th>Suppression</th>
-			</tr>
+                        <th>Libelle </th>
+                        <th>Age minimum</th>
+                        <th>Age maximum</th>
+                        <th>Nombres de places maxi</th>
+                        <th>Jour</th>
+                        <th>Instrument du Cours</tthd>
+                        <th>Modification</th>
+                        <th>Suppression</th>
+              
+                   
+                       
+                        </tr>
                     </thead>
-            </table>
-        </div>
+                </table>
+            </div>
 
-         <FONT face="arial">
-        <div class="tbl-content">
-            <table cellpadding="0" cellspacing="0" border="0">
-                <tbody>
+            <FONT face="arial">
+            <div class="tbl-content">
+                <table cellpadding="0" cellspacing="0" border="0">
+                    <tbody>
 
-			{% for c in cours  %}
-		<tr>
-			
-			<td>{{c.libelle}}</td>
-            <td>{{c.ageMini}}</td>
-			<td>{{c.ageMaxi}}</td>
-            <td>{{c.nbPlaceMaxi}}</td>
-            <td>{{c.jour.libelle}}</td>
-			<td>{{c.typeInstrument.libelle}}</td>
-            <td><a href="{{ path('modifierCours', {'idCours': c.id})}}">Modifier le Cours</a></td>
-            <td><a href="{{ path('supprimerCours', {'idCours': c.id})}}"onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce cours ?')">Supprimer le Cours</a></td>
-		</tr>
-		{% else %}
-		<tr>
-			<td>Aucun professeur trouvé.</td>
-		</tr>
-		{% endfor %}
-               </tbody>
-            </table>
-        </div>
-        <br>
+			    {% for c in cours  %}
+                    <tr>
+                        
+                        <td>{{c.libelle}}</td>
+                        <td>{{c.ageMini}}</td>
+                        <td>{{c.ageMaxi}}</td>
+                        <td>{{c.nbPlaceMaxi}}</td>
+                        <td>{{c.jour.libelle}}</td>
+                        <td>{{c.typeInstrument.libelle}}</td>
+                        <td><a href="{{ path('modifierCours', {'idCours': c.id})}}">Modifier le Cours</a></td>
+                        <td><a href="{{ path('supprimerCours', {'idCours': c.id})}}"onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce cours ?')">Supprimer le Cours</a></td>
+                       
 
-         <a class="btn btn-add btn-l" href="{{ path('ajouterCours')}}">Ajout d'un cours </a>
+                    </tr>
+		        {% else %}
+                    <tr>
+                        <td>Aucun professeur trouvé.</td>
+                    </tr>
+		        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <br>
+
+            <a class="btn btn-add btn-l" href="{{ path('ajouterCours')}}">Ajout d'un cours </a>
                    
                     
     

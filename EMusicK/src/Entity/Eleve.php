@@ -43,34 +43,26 @@ class Eleve
 
     /**
      * @ORM\Column(type="string", length=255)
-     * 
      * @Assert\Length(min = 2, minMessage = "La rue doit comporter au moins 2 caractères")
      * @Assert\Length(max = 50, maxMessage = "La rue doit comporter au plus 50 caractères")
-     * 
      */
     private $rue;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * 
-     * @Assert\Length(max = 100, maxMessage = "La ville doit comporter au plus 100 caractères")
-     * 
+     *      * @Assert\Length(min = 2, minMessage = "La rue doit comporter au moins 2 caractères")
+     * @Assert\Length(max = 50, maxMessage = "La rue doit comporter au plus 50 caractères")
      */
     private $ville;
 
     /**
      * @ORM\Column(type="integer")
-     * @Assert\NotNull
+     * @Assert\Length(max = 100, maxMessage = "La ville doit comporter au plus 100 caractères")
      */
     private $codePostal;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Compte::class, inversedBy="eleve")
-     */
-    private $compte;
-
     /**
      * @ORM\OneToMany(targetEntity=Inscription::class, mappedBy="eleve")
+     * @Assert\NotNull
      */
     private $inscription;
     /**
@@ -165,19 +157,6 @@ class Eleve
 
         return $this;
     }
-
-    public function getCompte(): ?Compte
-    {
-        return $this->compte;
-    }
-
-    public function setCompte(?Compte $compte): self
-    {
-        $this->compte = $compte;
-
-        return $this;
-    }
-
     /**
      * @return Collection|Inscription[]
      */

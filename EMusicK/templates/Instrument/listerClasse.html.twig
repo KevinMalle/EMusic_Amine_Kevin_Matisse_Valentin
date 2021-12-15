@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>{% block title %}E-Music{% endblock %}</title>
+        <title>{% block title %}E-Music - Classes d'Instruments{% endblock %}</title>
         {% block stylesheets %}
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="{{ asset('assets/Music.ico') }}" />
@@ -52,6 +52,8 @@
                 </div>
                 <a class="btn btn-primary btn-l" href="{{ path('listerAllInstrument')}}">Liste de tous les Instruments</a>
                 <a class="btn btn-add btn-l" href="{{ path('ajouterInstrument')}}">Ajouter un Instrument</a>
+                <a class="btn btn-add btn-l" href="{{ path('ajouterAccessoire')}}">Ajouter un Accessoire</a>
+                
             </div>
         </section>
 

@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>{% block title %}E-Music - Ajouter un Instrument{% endblock %}</title>
+        <title>{% block title %}E-Music{% endblock %}</title>
         {% block stylesheets %}
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="{{ asset('assets/Music.ico') }}" />
@@ -16,53 +16,44 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
+        <link href="{{ asset('css/styleTablePret.css') }}" rel="stylesheet" />
         {% endblock %}
     </head>
     <body id="page-top">
 
 
         {% include 'Navigation/navigation.html.twig' %}
-
+        
         <!-- Masthead-->
         <header class="masthead">
             <div class="container">
-            {% if app.request.get('_route') == 'ajouterInstrument' %}
-
-                    <div class="masthead-heading">Ajout d'un Instrument</div>
-                    
-            {% else %}
-
-                <div class="masthead-heading">Modification de l'Instrument</a>
-
-            {% endif %}
+                <div class="masthead-heading">Consultation d'une inscription</div>
             </div>
         </header>
-        <center>
-
-        {# templates/Instrument/ajouterInstrument.html.twig #}
-        <br>
-        <br>
-        {{ form_start(formInstru) }}
-
-			    <div class="container">
-				    <div class="row">   
-			            <div class="col-lg-4 col-sm-6 mb-4 form-ajout">
-                                {{ form_row(formInstru.intitule,{'attr' : {'class' : 'form-control'}}  ) }} 
-                                {{ form_row(formInstru.marque,{'attr' : {'class' : 'form-control'}}  ) }}
-                                {{ form_row(formInstru.couleurDominante,{'attr' : {'class' : 'form-control'}}  ) }}
-                                {{ form_row(formInstru.NumeroSerie,{'attr' : {'class' : 'form-control'}}  ) }}
-                                {{ form_row(formInstru.prixAchat,{'attr' : {'class' : 'form-control'}}  ) }}
-                                {{ form_row(formInstru.utilisation,{'attr' : {'class' : 'form-control'}}  ) }}
-                                {{ form_row(formInstru.typeInstrument,{'attr' : {'class' : 'form-control'}}  ) }}
-                                <br>
-                                {{ form_row(formInstru.enregistrer,{'attr' : {'class' : 'form-control btn-primary'}}  ) }}
-                        </div>
-                    </div>
-                </div>
-            
 
 
-        {{ form_end(formInstru) }}
+    <section>
+        
+            <table>
+			<tr>
+		
+			<td>Montant du paiement</td>
+            <td>Nom de l'élève</td>
+			<td>Cours</td>
+			</tr>
+			
+		<tr>
+			
+			<td>{{inscription.nbPaiement}}</td>
+            <td>{{inscription.eleve.nom}}</td>
+			<td>{{inscription.cours.libelle}}</td>
+		</tr>
+		
+		
+        </table>
+        </div>
+    </section>
+
 
         <!--Footer-->
         <footer class="footer py-4">
@@ -92,4 +83,3 @@
         {% endblock %}
     </body>
 </html>
-

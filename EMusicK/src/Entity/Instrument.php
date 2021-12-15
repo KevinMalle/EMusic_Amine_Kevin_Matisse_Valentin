@@ -101,7 +101,6 @@ class Instrument
         $this->accessoire = new ArrayCollection();
         $this->interventions = new ArrayCollection();
     }
-
     public function getId(): ?int
     {
         return $this->id;

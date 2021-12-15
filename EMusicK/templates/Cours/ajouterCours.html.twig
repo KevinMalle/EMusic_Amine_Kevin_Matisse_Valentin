@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>{% block title %}E-Music{% endblock %}</title>
+        <title>{% block title %}E-Music - Ajout d'un cours{% endblock %}</title>
         {% block stylesheets %}
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="{{ asset('assets/Music.ico') }}" />
@@ -43,17 +43,28 @@
         <br>
         <br>
         {{ form_start(formCours) }}
-        {{ form_widget(formCours) }}
+
+			    <div class="container">
+				    <div class="row">   
+			            <div class="col-lg-4 col-sm-6 mb-4 form-ajout">
+                                {{ form_row(formCours.libelle,{'attr' : {'class' : 'form-control'}}  ) }} <br>
+                                {{ form_row(formCours.ageMini,{'attr' : {'class' : 'form-control'}}  ) }}<br>
+                                {{ form_row(formCours.ageMaxi,{'attr' : {'class' : 'form-control'}}  ) }}<br>
+                                {{ form_row(formCours.nbPlaceMaxi,{'attr' : {'class' : 'form-control'}}  ) }}<br>
+                                {{ form_row(formCours.jour,{'attr' : {'class' : 'form-control'}}  ) }}<br>
+                                {{ form_row(formCours.professeur,{'attr' : {'class' : 'form-control'}}  ) }}<br>
+                                {{ form_row(formCours.typeInstrument,{'attr' : {'class' : 'form-control'}}  ) }}
+                                <br>
+                                {{ form_row(formCours.enregistrer,{'attr' : {'class' : 'form-control btn-primary'}}  ) }}
+                        </div>
+                    </div>
+                </div>
+            
+
+
         {{ form_end(formCours) }}
-
         <br>
         <br>
-
-        <div>
-            <a class="btn btn-primary btn-l" href="{{ path('listerPret')}}">Précédent</a>
-        </div>
-
-        </center>
 
         <!--Footer-->
         <footer class="footer py-4">

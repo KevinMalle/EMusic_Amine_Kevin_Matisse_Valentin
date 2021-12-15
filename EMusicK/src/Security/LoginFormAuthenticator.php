@@ -18,6 +18,7 @@ use Symfony\Component\Security\Http\Authenticator\Passport\PassportInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials;
+use Symfony\Component\Security\Core\Security;
 
 class LoginFormAuthenticator extends AbstractAuthenticator
 {
@@ -42,6 +43,7 @@ class LoginFormAuthenticator extends AbstractAuthenticator
         $email = $request->request->get('email');
         $password = $request->request->get('password');
         $username = $request->request->get('username');
+        $role = $request->request->get('role');
 
         return new Passport(
 
@@ -71,7 +73,11 @@ class LoginFormAuthenticator extends AbstractAuthenticator
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
     {
-        dd('failure');
+        $request->getSession()->set(Security::AUTHENTICATION_ERROR, $exception);
+
+        return new RedirectResponse(
+            $this->router->generate('app_login')
+        );
     }
 
 
@@ -93,4 +99,7 @@ $request->getSession()->set(Security::AUTHENTICATION_ERROR, $exception);
 //         * For more details, see https://symfony.com/doc/current/security/experimental_authenticators.html#configuring-the-authentication-entry-point
 //         */
 //    }
+
+
+
 }
